@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { AccommodationData } from '../types/accommodations';
+import AdditionalInfo from './AdditionalInfo';
 
 type unitProps = {
   unitData: AccommodationData;
@@ -23,7 +24,7 @@ function UnitCard({ unitData }: unitProps) {
   };
 
   return (
-    <div className="h-fit w-full overflow-hidden rounded-md border-2 transition-all hover:bg-slate-50 hover:shadow-md">
+    <div className="h-fit w-full overflow-hidden rounded-md border-2 transition-all hover:shadow-md">
       <div className="relative flex h-36 gap-2">
         <div className="h-full w-4/12">
           <img src={image} alt={image} className="h-full w-full object-cover" />
@@ -47,18 +48,9 @@ function UnitCard({ unitData }: unitProps) {
       </div>
 
       <div
-        className={`${
-          expanded ? 'max-h-64' : 'max-h-0'
-        } h-fit bg-slate-100 px-2 text-xs transition-all duration-300`}
+        className={`${expanded ? 'max-h-64' : 'max-h-0'} transition-all duration-300`}
       >
-        <h3>Amenities:</h3>
-        <ul className="pl-2">
-          {Object.entries(amenities).map(([key, value]) => (
-            <li key={key}>
-              {key}: {value ? '✔️' : '❌'}
-            </li>
-          ))}
-        </ul>
+        <AdditionalInfo amenities={amenities} />
       </div>
     </div>
   );
