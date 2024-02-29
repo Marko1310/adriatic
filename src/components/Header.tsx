@@ -1,6 +1,6 @@
 function Header() {
   return (
-    <div className="flex items-center justify-between border p-4 shadow-lg">
+    <div className="flex items-center justify-between border p-4 shadow-md">
       <div className="flex items-center gap-4">
         <img
           className="h-10 w-10"

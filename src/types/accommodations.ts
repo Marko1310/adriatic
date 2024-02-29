@@ -21,4 +21,6 @@ export type AccommodationData = {
     intervalStart: string;
     intervalEnd: string;
   }[];
-}[];
+};
+
+export type AccommodationDataArray = AccommodationData[];
