@@ -5,10 +5,10 @@ import Search from './components/Search';
 import useAxios from './hooks/useAxios';
 import { environment } from './environment';
 import { accommodation_api } from './services/api_config';
-import { AccommodationDataArray } from './types/accommodations';
+import { AccommodationData } from './types/accommodations';
 
 function App() {
-  const [data, loading, error] = useAxios<AccommodationDataArray>(
+  const [data, loading, error] = useAxios<AccommodationData[]>(
     accommodation_api,
     environment.getAccommodation,
   );

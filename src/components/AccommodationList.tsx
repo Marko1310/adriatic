@@ -1,8 +1,8 @@
 import AccommodationCard from './AccommodationCard';
-import { AccommodationDataArray } from '../types/accommodations';
+import { AccommodationData } from '../types/accommodations';
 
 type AccommodationListProps = {
-  accommodations: AccommodationDataArray | undefined;
+  accommodations: AccommodationData[] | undefined;
 };
 
 function AccommodationList({ accommodations }: AccommodationListProps) {

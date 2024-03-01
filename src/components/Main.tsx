@@ -1,10 +1,10 @@
 import AccommodationList from './AccommodationList';
 import LoadingDisplay from './LoadingDisplay';
 import ErrorDisplay from './ErrorDisplay';
-import { AccommodationDataArray } from '../types/accommodations';
+import { AccommodationData } from '../types/accommodations';
 
 type MainProps = {
-  data: AccommodationDataArray | undefined;
+  data: AccommodationData[] | undefined;
   loading: boolean;
   error: string;
 };

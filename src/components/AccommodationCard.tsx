@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { AccommodationData } from '../types/accommodations';
 import AdditionalInfo from './AdditionalInfo';
+import { AccommodationData } from '../types/accommodations';
 
 type AccommodationCardProps = {
   accommodation: AccommodationData;
