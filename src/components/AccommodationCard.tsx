@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { AccommodationData } from '../types/accommodations';
 import AdditionalInfo from './AdditionalInfo';
 
-type unitProps = {
-  unitData: AccommodationData;
+type AccommodationCardProps = {
+  accommodation: AccommodationData;
 };
 
-function UnitCard({ unitData }: unitProps) {
+function AccommodationCard({ accommodation }: AccommodationCardProps) {
   const {
     title,
     image,
@@ -15,7 +15,7 @@ function UnitCard({ unitData }: unitProps) {
     amenities,
     pricelistInEuros,
     availableDates,
-  } = unitData;
+  } = accommodation;
 
   const [expanded, setExpanded] = useState(false);
 
@@ -56,4 +56,4 @@ function UnitCard({ unitData }: unitProps) {
   );
 }
 
-export default UnitCard;
+export default AccommodationCard;

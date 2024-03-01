@@ -1,28 +1,21 @@
-import UnitCard from './UnitCard';
-import useAxios from '../hooks/useAxios';
-import { environment } from '../environment';
-import { accommodation_api } from '../services/api_config';
+import AccommodationList from './AccommodationList';
+import LoadingDisplay from './LoadingDisplay';
+import ErrorDisplay from './ErrorDisplay';
 import { AccommodationDataArray } from '../types/accommodations';
 
-function Main() {
-  const [data, loading, error] = useAxios<AccommodationDataArray>(
-    accommodation_api,
-    environment.getAccommodation,
-  );
+type MainProps = {
+  data: AccommodationDataArray | undefined;
+  loading: boolean;
+  error: string;
+};
 
-  if (loading) return <p className="h-full">Loading...</p>;
-
-  if (error !== '') return <p>{error}</p>;
-
-  if (!data) return <p>No data</p>;
+function Main({ data, loading, error }: MainProps) {
+  if (loading) return <LoadingDisplay />;
+  if (error !== '') return <ErrorDisplay error={error} />;
 
   return (
     <div className="flex justify-center overflow-auto">
-      <div className="flex w-full flex-col items-center gap-4 p-0 py-4 lg:w-[900px]">
-        {data.map((unit) => {
-          return <UnitCard key={unit.id} unitData={unit} />;
-        })}
-      </div>
+      <AccommodationList accommodations={data} />
     </div>
   );
 }
