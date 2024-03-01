@@ -22,3 +22,14 @@ export type AccommodationData = {
     intervalEnd: string;
   }[];
 };
+
+export type Amenity = keyof AccommodationData['amenities'];
+
+export const amenitiesData: Amenity[] = [
+  'airConditioning',
+  'parkingSpace',
+  'pets',
+  'pool',
+  'wifi',
+  'tv',
+];
