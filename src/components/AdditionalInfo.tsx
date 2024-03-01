@@ -16,7 +16,7 @@ function AdditionalInfo({ amenities }: { amenities: AdditionalInfoProps }) {
           <ul className="flex gap-2 pl-2">
             {Object.entries(amenities).map(([key, value]) => (
               <li
-                className={`border-2 ${value ? 'bg-green-200' : ''}  p-1`}
+                className={`border ${value ? 'bg-green-200' : ''}  p-1`}
                 key={key}
               >
                 {key}: {value ? '✔️' : '❌'}
@@ -26,7 +26,7 @@ function AdditionalInfo({ amenities }: { amenities: AdditionalInfoProps }) {
         </div>
         <div className="flex flex-col">
           <div>Price</div>
-          <button className="rounded-md border-2 bg-blue-500 p-2 font-semibold text-white">
+          <button className="rounded-md border bg-blue-500 p-2 font-semibold text-white">
             Reservation
           </button>
         </div>

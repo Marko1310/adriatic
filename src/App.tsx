@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
-import Search from './components/Search';
+import Filter from './components/Filter';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import useAxios from './hooks/useAxios';
@@ -62,7 +62,7 @@ function App() {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <Search
+      <Filter
         selectedAmenities={selectedAmenities}
         startDate={startDate}
         onCapacityChange={handleCapacityChange}
