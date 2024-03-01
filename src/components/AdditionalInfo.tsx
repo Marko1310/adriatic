@@ -15,7 +15,10 @@ function AdditionalInfo({ amenities }: { amenities: AdditionalInfoProps }) {
           <h3 className="font-semibold">Amenities:</h3>
           <ul className="flex gap-2 pl-2">
             {Object.entries(amenities).map(([key, value]) => (
-              <li className="border-2 bg-slate-50 p-1" key={key}>
+              <li
+                className={`border-2 ${value ? 'bg-green-200' : ''}  p-1`}
+                key={key}
+              >
                 {key}: {value ? '✔️' : '❌'}
               </li>
             ))}
