@@ -6,6 +6,7 @@ type FilterProps = {
   selectedAmenities: { [key: string]: boolean };
   startDate: string;
   endDate: string;
+  selectedCapacity: number;
   onCapacityChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onAmenitiesChange: (amenity: Amenity) => void;
   onStartDateChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -21,6 +22,7 @@ function Filter({
   selectedAmenities,
   startDate,
   endDate,
+  selectedCapacity,
   onCapacityChange,
   onAmenitiesChange,
   onStartDateChange,
@@ -29,14 +31,17 @@ function Filter({
   return (
     <div className="sticky top-0 z-10 flex justify-center">
       <div className=" flex w-full flex-col items-start justify-between gap-4 rounded-md bg-yellow-300 p-1 md:flex-row lg:w-[900px] lg:p-3">
-        <div className="flex justify-start gap-1">
+        <div className="flex items-center justify-start gap-1">
+          <span className="text-xs">Guests:</span>
           <input
-            className="h-12 w-24 rounded-md p-2 text-sm"
+            className="h-12 w-12 rounded-md p-2 text-center text-sm"
             type="number"
             min={1}
             onChange={onCapacityChange}
             placeholder="Guests"
+            value={selectedCapacity}
           />
+
           <div className="flex gap-0">
             <input
               className="h-12 rounded-l-md border-r p-2 text-xs"

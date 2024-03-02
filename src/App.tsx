@@ -18,7 +18,7 @@ function App() {
 
   const [filteredAccomodations, setFilteredAccommodations] =
     useState<AccommodationData[]>();
-  const [selectedCapacity, setSelectedCapacity] = useState<number>(0);
+  const [selectedCapacity, setSelectedCapacity] = useState<number>(1);
   const [selectedAmenities, setSelectedAmenities] = useState({
     airConditioning: false,
     parkingSpace: false,
@@ -42,7 +42,7 @@ function App() {
   }, [data, selectedCapacity, selectedAmenities, startDate, endDate]);
 
   const handleCapacityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSelectedCapacity(Number(e.target.value || 0));
+    setSelectedCapacity(Number(e.target.value));
   };
 
   const handleAmenitiesChange = (amenity: Amenity) => {
@@ -70,6 +70,7 @@ function App() {
         selectedAmenities={selectedAmenities}
         startDate={startDate}
         endDate={endDate}
+        selectedCapacity={selectedCapacity}
         onCapacityChange={handleCapacityChange}
         onAmenitiesChange={handleAmenitiesChange}
         onStartDateChange={handleStartDateChange}
