@@ -2,10 +2,13 @@ import { ReservationDetails } from '../types/reservations';
 
 type ReservationModalProps = {
   reservationDetails: ReservationDetails;
-  init: () => void;
+  resetState: () => void;
 };
 
-function ReservationModal({ reservationDetails, init }: ReservationModalProps) {
+function ReservationModal({
+  reservationDetails,
+  resetState,
+}: ReservationModalProps) {
   const {
     accommodationName,
     startDate,
@@ -29,7 +32,7 @@ function ReservationModal({ reservationDetails, init }: ReservationModalProps) {
       </div>
       <button
         className="rounded-md bg-blue-500 p-2 text-white hover:bg-blue-600"
-        onClick={init}
+        onClick={resetState}
       >
         Povratak na početnu stranicu
       </button>

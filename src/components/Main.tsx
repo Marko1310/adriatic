@@ -15,7 +15,7 @@ type MainProps = {
   reservationDetails: ReservationDetails;
   onReservation: (accommodationName: string, totalPrice: number) => void;
   reservationModalRef: React.RefObject<HTMLDialogElement>;
-  init: () => void;
+  resetState: () => void;
 };
 
 function Main({
@@ -27,7 +27,7 @@ function Main({
   reservationDetails,
   onReservation,
   reservationModalRef,
-  init,
+  resetState,
 }: MainProps) {
   if (loading) return <LoadingDisplay />;
   if (error !== '') return <ErrorDisplay error={error} />;
@@ -41,7 +41,10 @@ function Main({
         onReservation={onReservation}
       />
       <Modal ref={reservationModalRef}>
-        <ReservationModal reservationDetails={reservationDetails} init={init} />
+        <ReservationModal
+          reservationDetails={reservationDetails}
+          resetState={resetState}
+        />
       </Modal>
     </div>
   );

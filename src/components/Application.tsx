@@ -12,7 +12,7 @@ import { AccommodationData, Amenity } from '../types/accommodations';
 import { nextDate } from '../helper/dayHelper';
 
 function Application() {
-  const [data, loading, error] = useAxios<AccommodationData[]>(
+  const [data, loading, error, getData] = useAxios<AccommodationData[]>(
     accommodation_api,
     environment.getAccommodation,
   );
@@ -82,7 +82,8 @@ function Application() {
     openModal();
   };
 
-  const init = function () {
+  const resetState = function () {
+    getData();
     setStartDate('');
     setEndDate('');
     setSelectedAmenities({
@@ -101,6 +102,7 @@ function Application() {
       selectedCapacity: 0,
       totalPrice: 0,
     });
+
     closeModal();
   };
 
@@ -131,7 +133,7 @@ function Application() {
         reservationDetails={reservationDetails}
         onReservation={handleReservation}
         reservationModalRef={reservationModalRef}
-        init={init}
+        resetState={resetState}
       />
 
       <Footer />
