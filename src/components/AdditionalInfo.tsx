@@ -1,34 +1,40 @@
+import { Amenities } from '../types/accommodations';
+import AmenitiesList from './AmenitiesList';
+import PriceRange from './PriceRange';
+import TotalPrice from './TotalPrice';
+
 type AdditionalInfoProps = {
-  airConditioning: boolean;
-  parkingSpace: boolean;
-  pets: boolean;
-  pool: boolean;
-  wifi: boolean;
-  tv: boolean;
+  amenities: Amenities;
+  priceRange: {
+    minPrice: number;
+    maxPrice: number;
+  };
+  totalPrice: number;
+  datesAreDefined: boolean;
 };
 
-function AdditionalInfo({ amenities }: { amenities: AdditionalInfoProps }) {
+function AdditionalInfo({
+  amenities,
+  priceRange,
+  totalPrice,
+  datesAreDefined,
+}: AdditionalInfoProps) {
   return (
     <div className="h-fit border-t-2 p-2 px-2 text-xs">
       <div className="flex justify-between">
-        <div className="flex flex-col gap-2">
-          <h3 className="font-semibold">Amenities:</h3>
-          <ul className="flex gap-2 pl-2">
-            {Object.entries(amenities).map(([key, value]) => (
-              <li
-                className={`border ${value ? 'bg-green-200' : ''}  p-1`}
-                key={key}
-              >
-                {key}: {value ? '✔️' : '❌'}
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div className="flex flex-col">
-          <div>Price</div>
-          <button className="rounded-md border bg-blue-500 p-2 font-semibold text-white">
+        <AmenitiesList amenities={amenities} />
+        <div className="flex min-w-fit flex-col items-end justify-end gap-1">
+          <button
+            className="rounded-md border bg-blue-500 p-2 font-semibold text-white hover:bg-blue-600 disabled:bg-slate-500"
+            disabled={!datesAreDefined}
+          >
             Reservation
           </button>
+          {datesAreDefined ? (
+            <TotalPrice totalPrice={totalPrice} />
+          ) : (
+            <PriceRange priceRange={priceRange} />
+          )}
         </div>
       </div>
     </div>

@@ -1,9 +1,11 @@
+import { nextDate } from '../helper/dayHelper';
 import { Amenity } from '../types/accommodations';
 import AmenityFilter from './AmenityFilter';
 
 type FilterProps = {
   selectedAmenities: { [key: string]: boolean };
   startDate: string;
+  endDate: string;
   onCapacityChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onAmenitiesChange: (amenity: Amenity) => void;
   onStartDateChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -18,6 +20,7 @@ const datesRange = {
 function Filter({
   selectedAmenities,
   startDate,
+  endDate,
   onCapacityChange,
   onAmenitiesChange,
   onStartDateChange,
@@ -25,8 +28,8 @@ function Filter({
 }: FilterProps) {
   return (
     <div className="sticky top-0 z-10 flex justify-center">
-      <div className=" flex w-full flex-col items-center justify-between gap-6 rounded-md bg-yellow-300 p-1 lg:w-[900px] lg:p-3">
-        <div className="flex w-full justify-between gap-1">
+      <div className=" flex w-full flex-col items-start justify-between gap-4 rounded-md bg-yellow-300 p-1 md:flex-row lg:w-[900px] lg:p-3">
+        <div className="flex justify-start gap-1">
           <input
             className="h-12 w-24 rounded-md p-2 text-sm"
             type="number"
@@ -41,22 +44,22 @@ function Filter({
               max={datesRange.max}
               type="date"
               onChange={onStartDateChange}
+              value={startDate}
             />
             <input
               className="h-12 rounded-r-md p-2 text-xs"
               max={datesRange.max}
               type="date"
               disabled={startDate === '' ? true : false}
-              min={
-                startDate ? new Date(startDate).toISOString().split('T')[0] : ''
-              }
+              min={startDate ? nextDate(startDate) : ''}
               onChange={onEndDateChange}
+              value={endDate}
             />
           </div>
         </div>
-        <div className="flex w-full justify-start gap-5 align-middle text-xs">
+        <div className="flex justify-start gap-5 align-middle text-xs">
           <p className="font-semibold">Filter:</p>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex gap-4">
             <AmenityFilter
               selectedAmenities={selectedAmenities}
               onAmenitiesChange={onAmenitiesChange}

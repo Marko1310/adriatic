@@ -7,15 +7,21 @@ type MainProps = {
   data: AccommodationData[] | undefined;
   loading: boolean;
   error: string;
+  startDate: string;
+  endDate: string;
 };
 
-function Main({ data, loading, error }: MainProps) {
+function Main({ data, loading, error, startDate, endDate }: MainProps) {
   if (loading) return <LoadingDisplay />;
   if (error !== '') return <ErrorDisplay error={error} />;
 
   return (
     <div className="flex justify-center overflow-auto">
-      <AccommodationList accommodations={data} />
+      <AccommodationList
+        accommodations={data}
+        startDate={startDate}
+        endDate={endDate}
+      />
     </div>
   );
 }

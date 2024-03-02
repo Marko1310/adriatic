@@ -8,6 +8,7 @@ import { environment } from './environment';
 import { accommodation_api } from './services/api_config';
 import { filterAccommodation } from './utils/filterUtils';
 import { AccommodationData, Amenity } from './types/accommodations';
+import { nextDate } from './helper/dayHelper';
 
 function App() {
   const [data, loading, error] = useAxios<AccommodationData[]>(
@@ -56,7 +57,10 @@ function App() {
   };
 
   const handleEndDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEndDate(e.target.value);
+    const selectedEndDate = e.target.value;
+    setEndDate(
+      selectedEndDate <= startDate ? nextDate(startDate) : selectedEndDate,
+    );
   };
 
   return (
@@ -65,13 +69,20 @@ function App() {
       <Filter
         selectedAmenities={selectedAmenities}
         startDate={startDate}
+        endDate={endDate}
         onCapacityChange={handleCapacityChange}
         onAmenitiesChange={handleAmenitiesChange}
         onStartDateChange={handleStartDateChange}
         onEndDateChange={handleEndDateChange}
       />
 
-      <Main data={filteredAccomodations} loading={loading} error={error} />
+      <Main
+        data={filteredAccomodations}
+        loading={loading}
+        error={error}
+        startDate={startDate}
+        endDate={endDate}
+      />
       <Footer />
     </div>
   );

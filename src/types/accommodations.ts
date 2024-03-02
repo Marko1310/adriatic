@@ -4,27 +4,32 @@ export type AccommodationData = {
   image: string;
   capacity: number;
   beachDistanceInMeters: number;
-  amenities: {
-    airConditioning: boolean;
-    parkingSpace: boolean;
-    pets: boolean;
-    pool: boolean;
-    wifi: boolean;
-    tv: boolean;
-  };
-  pricelistInEuros: {
-    intervalStart: string;
-    intervalEnd: string;
-    pricePerNight: number;
-  }[];
-  availableDates: {
-    intervalStart: string;
-    intervalEnd: string;
-  }[];
+  amenities: Amenities;
+  pricelistInEuros: PriceList[];
+  availableDates: AvailableDates[];
+};
+
+export type Amenities = {
+  airConditioning: boolean;
+  parkingSpace: boolean;
+  pets: boolean;
+  pool: boolean;
+  wifi: boolean;
+  tv: boolean;
+};
+
+export type PriceList = {
+  intervalStart: string;
+  intervalEnd: string;
+  pricePerNight: number;
+};
+
+export type AvailableDates = {
+  intervalStart: string;
+  intervalEnd: string;
 };
 
 export type Amenity = keyof AccommodationData['amenities'];
-
 export const amenitiesData: Amenity[] = [
   'airConditioning',
   'parkingSpace',

@@ -1,12 +1,19 @@
 import { useState } from 'react';
 import AdditionalInfo from './AdditionalInfo';
 import { AccommodationData } from '../types/accommodations';
+import { calculatePriceRange, calculateTotalPrice } from '../utils/priceUtils';
 
 type AccommodationCardProps = {
   accommodation: AccommodationData;
+  startDate: string;
+  endDate: string;
 };
 
-function AccommodationCard({ accommodation }: AccommodationCardProps) {
+function AccommodationCard({
+  accommodation,
+  startDate,
+  endDate,
+}: AccommodationCardProps) {
   const {
     title,
     image,
@@ -14,14 +21,16 @@ function AccommodationCard({ accommodation }: AccommodationCardProps) {
     beachDistanceInMeters,
     amenities,
     pricelistInEuros,
-    availableDates,
   } = accommodation;
 
   const [expanded, setExpanded] = useState(false);
-
   const handleClick = () => {
     setExpanded(!expanded);
   };
+
+  const priceRange = calculatePriceRange(pricelistInEuros);
+  const totalPrice = calculateTotalPrice(pricelistInEuros, startDate, endDate);
+  const datesAreDefined = !!startDate && !!endDate;
 
   return (
     <div className="h-fit w-full overflow-hidden rounded-md border transition-all hover:shadow-md">
@@ -50,7 +59,12 @@ function AccommodationCard({ accommodation }: AccommodationCardProps) {
       <div
         className={`${expanded ? 'max-h-64' : 'max-h-0'} transition-all duration-300`}
       >
-        <AdditionalInfo amenities={amenities} />
+        <AdditionalInfo
+          amenities={amenities}
+          priceRange={priceRange}
+          totalPrice={totalPrice}
+          datesAreDefined={datesAreDefined}
+        />
       </div>
     </div>
   );

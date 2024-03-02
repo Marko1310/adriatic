@@ -9,9 +9,6 @@ function Header() {
         />
         <h1 className="text-2xl font-semibold tracking-wider">Adriatic.hr</h1>
       </div>
-      <button className="rounded-md border bg-blue-900 p-2 text-white">
-        Login
-      </button>
     </div>
   );
 }
