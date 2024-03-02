@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Header from './components/Header';
 import Filter from './components/Filter';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import useAxios from './hooks/useAxios';
+import useModal from './hooks/useModal';
 import { environment } from './environment';
 import { accommodation_api } from './services/api_config';
 import { filterAccommodation } from './utils/filterUtils';
@@ -16,7 +17,7 @@ function App() {
     environment.getAccommodation,
   );
 
-  const [filteredAccomodations, setFilteredAccommodations] =
+  const [filteredAccommodations, setFilteredAccommodations] =
     useState<AccommodationData[]>();
   const [selectedCapacity, setSelectedCapacity] = useState<number>(1);
   const [selectedAmenities, setSelectedAmenities] = useState({
@@ -29,6 +30,13 @@ function App() {
   });
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
+  const [reservationDetails, setReservationDetails] = useState({
+    accommodationName: '',
+    startDate: '',
+    endDate: '',
+    selectedCapacity: 0,
+    totalPrice: 0,
+  });
 
   useEffect(() => {
     const filteredData = filterAccommodation(
@@ -63,6 +71,43 @@ function App() {
     );
   };
 
+  const handleReservation = (accommodationName: string, totalPrice: number) => {
+    setReservationDetails({
+      startDate,
+      endDate,
+      selectedCapacity,
+      accommodationName,
+      totalPrice,
+    });
+    openModal();
+  };
+
+  const init = function () {
+    setStartDate('');
+    setEndDate('');
+    setSelectedAmenities({
+      airConditioning: false,
+      parkingSpace: false,
+      pets: false,
+      pool: false,
+      wifi: false,
+      tv: false,
+    });
+    setSelectedCapacity(1);
+    setReservationDetails({
+      accommodationName: '',
+      startDate: '',
+      endDate: '',
+      selectedCapacity: 0,
+      totalPrice: 0,
+    });
+    closeModal();
+  };
+
+  const reservationModalRef = useRef<HTMLDialogElement>(null);
+  const { openModal } = useModal(reservationModalRef);
+  const { closeModal } = useModal(reservationModalRef);
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
@@ -78,12 +123,17 @@ function App() {
       />
 
       <Main
-        data={filteredAccomodations}
+        data={filteredAccommodations}
         loading={loading}
         error={error}
         startDate={startDate}
         endDate={endDate}
+        reservationDetails={reservationDetails}
+        onReservation={handleReservation}
+        reservationModalRef={reservationModalRef}
+        init={init}
       />
+
       <Footer />
     </div>
   );

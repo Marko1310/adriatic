@@ -7,12 +7,14 @@ type AccommodationCardProps = {
   accommodation: AccommodationData;
   startDate: string;
   endDate: string;
+  onReservation: (accommodationName: string, totalPrice: number) => void;
 };
 
 function AccommodationCard({
   accommodation,
   startDate,
   endDate,
+  onReservation,
 }: AccommodationCardProps) {
   const {
     title,
@@ -30,7 +32,6 @@ function AccommodationCard({
 
   const priceRange = calculatePriceRange(pricelistInEuros);
   const totalPrice = calculateTotalPrice(pricelistInEuros, startDate, endDate);
-  const datesAreDefined = !!startDate && !!endDate;
 
   return (
     <div className="h-fit w-full overflow-hidden rounded-md border transition-all hover:shadow-md">
@@ -63,7 +64,10 @@ function AccommodationCard({
           amenities={amenities}
           priceRange={priceRange}
           totalPrice={totalPrice}
-          datesAreDefined={datesAreDefined}
+          title={title}
+          startDate={startDate}
+          endDate={endDate}
+          onReservation={onReservation}
         />
       </div>
     </div>

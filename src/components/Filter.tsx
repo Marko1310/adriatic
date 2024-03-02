@@ -30,7 +30,7 @@ function Filter({
 }: FilterProps) {
   return (
     <div className="sticky top-0 z-10 flex justify-center">
-      <div className=" flex w-full flex-col items-start justify-between gap-4 rounded-md bg-yellow-300 p-1 md:flex-row lg:w-[900px] lg:p-3">
+      <div className=" flex w-full flex-col items-start justify-between gap-4 rounded-md bg-yellow-300 p-1 md:flex-row md:p-3 lg:w-[900px]">
         <div className="flex items-center justify-start gap-1">
           <span className="text-xs">Guests:</span>
           <input
@@ -58,7 +58,7 @@ function Filter({
               disabled={startDate === '' ? true : false}
               min={startDate ? nextDate(startDate) : ''}
               onChange={onEndDateChange}
-              value={endDate}
+              value={endDate > startDate ? endDate : ''}
             />
           </div>
         </div>

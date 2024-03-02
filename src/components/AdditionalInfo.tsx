@@ -1,7 +1,7 @@
-import { Amenities } from '../types/accommodations';
 import AmenitiesList from './AmenitiesList';
 import PriceRange from './PriceRange';
 import TotalPrice from './TotalPrice';
+import { Amenities } from '../types/accommodations';
 
 type AdditionalInfoProps = {
   amenities: Amenities;
@@ -10,15 +10,23 @@ type AdditionalInfoProps = {
     maxPrice: number;
   };
   totalPrice: number;
-  datesAreDefined: boolean;
+  title: string;
+  startDate: string;
+  endDate: string;
+  onReservation: (accommodationName: string, totalPrice: number) => void;
 };
 
 function AdditionalInfo({
   amenities,
   priceRange,
   totalPrice,
-  datesAreDefined,
+  title,
+  startDate,
+  endDate,
+  onReservation,
 }: AdditionalInfoProps) {
+  const datesAreDefined = !!startDate && !!endDate;
+
   return (
     <div className="h-fit border-t-2 p-2 px-2 text-xs">
       <div className="flex justify-between">
@@ -27,6 +35,7 @@ function AdditionalInfo({
           <button
             className="rounded-md border bg-blue-500 p-2 font-semibold text-white hover:bg-blue-600 disabled:bg-slate-500"
             disabled={!datesAreDefined}
+            onClick={() => onReservation(title, totalPrice)}
           >
             Rezerviraj
           </button>
