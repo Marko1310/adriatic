@@ -10,19 +10,19 @@ function PriceRange({ priceRange }: PriceRangeProps) {
     <div className="flex flex-col items-end ">
       {priceRange.minPrice === priceRange.maxPrice ? (
         <p>
-          Price per night:{' '}
+          Cijena po noćenju:{' '}
           <span className="font-semibold">{priceRange?.minPrice}E</span>
         </p>
       ) : (
         <p>
-          Price range:{' '}
-          <span className="font-semibold">{priceRange?.minPrice}E</span> to{' '}
-          <span className="font-semibold">{priceRange?.maxPrice}E</span> per
-          night
+          Raspon cijena:{' '}
+          <span className="font-semibold">{priceRange?.minPrice}E</span> do{' '}
+          <span className="font-semibold">{priceRange?.maxPrice}E</span> po
+          noćenju
         </p>
       )}
 
-      <p>Please choose dates for full price</p>
+      <p>Molimo odaberite datume za prikaz ukupne cijene</p>
     </div>
   );
 }

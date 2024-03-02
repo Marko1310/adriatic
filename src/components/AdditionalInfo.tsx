@@ -28,7 +28,7 @@ function AdditionalInfo({
             className="rounded-md border bg-blue-500 p-2 font-semibold text-white hover:bg-blue-600 disabled:bg-slate-500"
             disabled={!datesAreDefined}
           >
-            Reservation
+            Rezerviraj
           </button>
           {datesAreDefined ? (
             <TotalPrice totalPrice={totalPrice} />

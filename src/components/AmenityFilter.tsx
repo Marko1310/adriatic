@@ -1,4 +1,8 @@
-import { Amenity, amenitiesData } from '../types/accommodations';
+import {
+  Amenity,
+  amenitiesData,
+  translatedAmenities,
+} from '../types/accommodations';
 
 type AmenityFilterProps = {
   selectedAmenities: { [key: string]: boolean };
@@ -18,7 +22,7 @@ function AmenityFilter({
             checked={selectedAmenities[amenity]}
             onChange={() => onAmenitiesChange(amenity)}
           />
-          {amenity}
+          {translatedAmenities[amenity]}
         </label>
       ))}
     </div>

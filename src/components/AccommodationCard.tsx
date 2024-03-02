@@ -41,9 +41,9 @@ function AccommodationCard({
         <div className="flex w-8/12 flex-col">
           <h1 className="mb-3 text-base text-blue-500 lg:text-xl">{title}</h1>
           <div className="flex flex-col gap-2 pl-2 text-xs lg:text-sm">
-            <p>Capacity: {capacity} guest</p>
+            <p>Kapacitet: {capacity} guest</p>
             {beachDistanceInMeters && (
-              <p>Distance from beach: {beachDistanceInMeters}m</p>
+              <p>Udaljenost od plaže: {beachDistanceInMeters}m</p>
             )}
           </div>
           <div
@@ -51,7 +51,7 @@ function AccommodationCard({
             className="absolute bottom-2 right-2 flex gap-2 rounded-md border p-2 text-xs hover:cursor-pointer"
           >
             <p>{expanded ? '↑' : '↓'}</p>
-            <p>Amenities & prices</p>
+            <p>Dodatna ponuda i cijene</p>
           </div>
         </div>
       </div>

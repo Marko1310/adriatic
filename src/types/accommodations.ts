@@ -38,3 +38,11 @@ export const amenitiesData: Amenity[] = [
   'wifi',
   'tv',
 ];
+export const translatedAmenities: Record<Amenity, string> = {
+  airConditioning: 'Klima',
+  parkingSpace: 'Parking',
+  pets: 'Ljubimci',
+  pool: 'Bazen',
+  wifi: 'Wi-Fi',
+  tv: 'Tv',
+};
