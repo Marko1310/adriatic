@@ -1,4 +1,5 @@
 import AccommodationList from './AccommodationList';
+import NoAccommodation from './NoAccommodation';
 import LoadingDisplay from './LoadingDisplay';
 import ErrorDisplay from './ErrorDisplay';
 import Modal from '../shared/Modal';
@@ -31,6 +32,7 @@ function Main({
 }: MainProps) {
   if (loading) return <LoadingDisplay />;
   if (error !== '') return <ErrorDisplay error={error} />;
+  if (data?.length === 0) return <NoAccommodation />;
 
   return (
     <div className="flex justify-center overflow-auto">

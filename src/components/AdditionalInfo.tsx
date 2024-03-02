@@ -32,13 +32,15 @@ function AdditionalInfo({
       <div className="flex justify-between">
         <AmenitiesList amenities={amenities} />
         <div className="flex min-w-fit flex-col items-end justify-end gap-1">
-          <button
-            className="rounded-md border bg-blue-500 p-2 font-semibold text-white hover:bg-blue-600 disabled:bg-slate-500"
-            disabled={!datesAreDefined}
-            onClick={() => onReservation(title, totalPrice)}
-          >
-            Rezerviraj
-          </button>
+          {datesAreDefined && (
+            <button
+              className="rounded-md border bg-blue-500 p-2 font-semibold text-white hover:bg-blue-600"
+              onClick={() => onReservation(title, totalPrice)}
+            >
+              Rezerviraj
+            </button>
+          )}
+
           {datesAreDefined ? (
             <TotalPrice totalPrice={totalPrice} />
           ) : (
