@@ -1,7 +1,7 @@
-import { ReservationDetails } from "../types/reservations";
+import { ReservationDetails } from '../types/reservations';
 
 type ReservationModalProps = {
-  reservationDetails: ReservationDetails
+  reservationDetails: ReservationDetails;
   init: () => void;
 };
 
