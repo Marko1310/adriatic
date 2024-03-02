@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
-import Header from './Header';
-import Filter from './Filter';
-import Main from './Main';
-import Footer from './Footer';
+import Header from '../components/Header';
+import Filter from '../components/Filter';
+import Main from '../components/Main';
+import Footer from '../components/Footer';
 import useAxios from '../hooks/useAxios';
 import useModal from '../hooks/useModal';
 import { environment } from '../environment';
