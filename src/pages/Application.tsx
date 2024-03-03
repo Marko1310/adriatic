@@ -3,7 +3,7 @@ import Header from '../components/Header';
 import Filter from '../components/Filter';
 import Main from '../components/Main';
 import Footer from '../components/Footer';
-import useAxios from '../hooks/useAxios';
+import useAccommodationApi from '../hooks/useAccommodationApi';
 import useModal from '../hooks/useModal';
 import { environment } from '../environment';
 import { accommodation_api } from '../services/api_config';
@@ -12,10 +12,9 @@ import { AccommodationData, Amenity } from '../types/accommodations';
 import { nextDate } from '../helper/dayHelper';
 
 function Application() {
-  const [data, loading, error, getData] = useAxios<AccommodationData[]>(
-    accommodation_api,
-    environment.getAccommodation,
-  );
+  const [data, loading, error, getData] = useAccommodationApi<
+    AccommodationData[]
+  >(accommodation_api, environment.getAccommodation);
 
   const [filteredAccommodations, setFilteredAccommodations] =
     useState<AccommodationData[]>();

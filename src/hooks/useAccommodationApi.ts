@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios';
 import { useCallback, useEffect, useState } from 'react';
 
-const useAxios = <T>(
+const useAccommodationApi = <T>(
   axiosInstance: AxiosInstance,
   apiEndpoint: string,
 ): [T | undefined, boolean, string, () => Promise<void>] => {
@@ -28,4 +28,4 @@ const useAxios = <T>(
   return [data, loading, error, getData];
 };
 
-export default useAxios;
+export default useAccommodationApi;
